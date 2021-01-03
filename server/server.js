@@ -7,6 +7,7 @@ const chalk = require('chalk');
 
 // Internal Imports
 const { connectToDB } = require('./src/db');
+const NoteRoutes = require('./src/routes/note/note-routes');
 
 // Initialize Express App
 const app = express();
@@ -16,10 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 connectToDB();
 
-// Base Routes
+// Routes
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.json({ message: 'Notes Backend' });
 });
+
+app.use('/api', NoteRoutes);
 
 // Listen
 const port = process.env.PORT || 3000;
