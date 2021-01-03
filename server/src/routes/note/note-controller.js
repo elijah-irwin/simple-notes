@@ -39,6 +39,10 @@ const updateNote = catchAsync(async(req, res, next) => {
     const options = { runValidators: true, new: true }
     const updatedNote = await Note.findByIdAndUpdate(id, note, options);
 
+    if (!updatedNote) {
+        throw new AppError(404, `Note ${id} not found.`);
+    }
+
     res.status(200).json({ 
         message: `Note ${id} updated successfully.`, 
         data: updatedNote 
