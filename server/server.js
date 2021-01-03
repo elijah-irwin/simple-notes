@@ -8,6 +8,7 @@ const chalk = require('chalk');
 // Internal Imports
 const { connectToDB } = require('./src/db');
 const NoteRoutes = require('./src/routes/note/note-routes');
+const { baseErrorHandler } = require('./src/utils/middleware');
 
 // Initialize Express App
 const app = express();
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', NoteRoutes);
+app.use(baseErrorHandler);
 
 // Listen
 const port = process.env.PORT || 3000;

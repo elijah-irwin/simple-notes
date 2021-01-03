@@ -13,8 +13,10 @@ const createNote = catchAsync(async(req, res, next) => {
 });
 
 const getAllNotes = catchAsync(async(req, res, next) => {
-    // get user id here based off current session
-    // get all notes belonging to current user
+
+    // TODO: get user id based of current session, 
+    // get all notes belonging to that current user
+
     const notes = await Note.find();
     res.status(200).send({ data: notes });
 });
